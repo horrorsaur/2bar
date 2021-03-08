@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public enum GameState
     Ended,
 }
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     // super testy atm, think I need to figure out how the multiplayer will work first to get this done correctly
     // mirror supports a variety of low level transports
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
     private List<Hand> playerHands = new List<Hand>();
     private List<GameObject> players = new List<GameObject>();
 
-    private int numberOfPlayers = 2;
+    private int numberOfPlayers = 0;
 
     private void Start()
     {
@@ -33,23 +34,28 @@ public class GameManager : MonoBehaviour
         DistributeCards();
     }
 
+    private void Update()
+    {
+        numberOfPlayers = NetworkManager.singleton.numPlayers;
+    }
+
 
     private void DistributeCards()
     {
         // Some kind of randomizer to select from a list of cards
         // For each player - assign their card.
-        for (int i = 0; i < numberOfPlayers; i++)
-        {
+        //for (int i = 0; i < numberOfPlayers; i++)
+        //{
 
-        }
+        //}
         //playerHand.SetCurrentCard(card);
     }
 
     private void SetNumberOfPlayers()
     {
-        for (int i = 0; i < numberOfPlayers; i++)
-        {
-            playerHands.Add(players[i].GetComponent<Hand>());
-        }
+        //for (int i = 0; i < numberOfPlayers; i++)
+        //{
+        //    playerHands.Add(players[i].GetComponent<Hand>());
+        //}
     }
 }

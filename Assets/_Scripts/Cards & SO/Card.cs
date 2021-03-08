@@ -71,4 +71,10 @@ public class Card : ScriptableObject
     private CardType cardType;
     [SerializeField] 
     private ColorType colorType;
+
+    #region Getters
+    public string CardName => cardName;
+    public CardType Type => cardType;
+    public ColorType Color => colorType;
+    #endregion
 }

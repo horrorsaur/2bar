@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 
@@ -10,9 +11,8 @@ public struct PlayerInputs
     public bool Interact;
 }
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
-
     [SerializeField] private float speed;
 
     public bool canMove { get; private set; } = true;
@@ -26,8 +26,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(canMove)
-            Move(); 
+        if (!isLocalPlayer)
+            return;
+
+        if (canMove)
+            Move();
     }
 
     public void SetInputs(ref PlayerInputs _input)
